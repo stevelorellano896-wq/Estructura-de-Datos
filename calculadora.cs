@@ -23,5 +23,5 @@ def main():
     print(multiplicar(num1, num2))
     print(dividir(num1, num2))
 
-if __name__ == "__main__":
+if __nam__ == "__main__":
     main()
