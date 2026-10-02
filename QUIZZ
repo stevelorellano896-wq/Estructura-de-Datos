@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace QUIZ_CSS
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            const int cantEst = 21;
+            string[] nombres = new string[cantEst];
+            double[] calificaciones = new double[cantEst];
+
+            Console.WriteLine($"Registro de Calificaciones de {cantEst} estudiantes\n");
+            for (int i = 0; i < cantEst; i++)
+            {
+                Console.WriteLine($"--- Estudiante {i + 1} ---");
+
+                string nombreIngresado = "";
+                bool nombreValido = false;
+                while (!nombreValido)
+                {
+                    Console.Write("Ingrese el nombre: ");
+                    nombreIngresado = Console.ReadLine();
+
+                    if (!string.IsNullOrWhiteSpace(nombreIngresado))
+                    {
+                        nombreValido = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: El nombre no puede estar vacío ni contener solo espacios.");
+                    }
+                }
+                nombres[i] = nombreIngresado;
+
+                double notaIngresada = 0;
+                bool notaValida = false;
+                while (!notaValida)
+                {
+                    Console.Write("Ingrese la nota (0.0 a 5.0): ");
+                    string entradaNota = Console.ReadLine();
+
+                    if (double.TryParse(entradaNota, out notaIngresada) && notaIngresada >= 0.0 && notaIngresada <= 5.0)
+                    {
+                        notaValida = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: La nota debe ser un número decimal entre 0.0 y 5.0.");
+                    }
+                }
+                calificaciones[i] = notaIngresada; 
+                Console.WriteLine();
+            }
+
+            double sumaNotas = 0;
+            double notaMayor = calificaciones[0];
+            double notaMenor = calificaciones[0];
+            int aprobados = 0;
+            int reprobados = 0;
+
+            for (int j = 0; j < cantEst; j++)
+            {
+                sumaNotas += calificaciones[j];
+
+                if (calificaciones[j] > notaMayor)
+                {
+                    notaMayor = calificaciones[j];
+                }
+
+                if (calificaciones[j] < notaMenor)
+                {
+                    notaMenor = calificaciones[j];
+                }
+
+                if (calificaciones[j] >= 3.0)
+                {
+                    aprobados++;
+                }
+                else
+                {
+                    reprobados++;
+                }
+            }
+
+            double promedio = sumaNotas / cantEst;
+
+            Console.WriteLine("========================================");
+            Console.WriteLine($"• Promedio del grupo: {promedio:F2}");
+            Console.WriteLine($"• Nota mayor del grupo: {notaMayor:F1}");
+            Console.WriteLine($"• Nota menor del grupo: {notaMenor:F1}");
+            Console.WriteLine($"• Cantidad de aprobados : {aprobados}");
+            Console.WriteLine($"• Cantidad de reprobados : {reprobados}");
+            Console.WriteLine("========================================");
+        }
+    }
+}
