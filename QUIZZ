@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QUIZ_CSS
-{
     internal class Program
     {
         static void Main(string[] args)
@@ -21,7 +13,8 @@ namespace QUIZ_CSS
 
                 string nombreIngresado = "";
                 bool nombreValido = false;
-                while (!nombreValido)
+
+                for (; !nombreValido;)
                 {
                     Console.Write("Ingrese el nombre: ");
                     nombreIngresado = Console.ReadLine();
@@ -39,7 +32,8 @@ namespace QUIZ_CSS
 
                 double notaIngresada = 0;
                 bool notaValida = false;
-                while (!notaValida)
+
+                for (; !notaValida;)
                 {
                     Console.Write("Ingrese la nota (0.0 a 5.0): ");
                     string entradaNota = Console.ReadLine();
@@ -53,7 +47,7 @@ namespace QUIZ_CSS
                         Console.WriteLine("Error: La nota debe ser un número decimal entre 0.0 y 5.0.");
                     }
                 }
-                calificaciones[i] = notaIngresada; 
+                calificaciones[i] = notaIngresada;
                 Console.WriteLine();
             }
 
